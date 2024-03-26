@@ -39,9 +39,6 @@ String.prototype.minus = function (str) {
     throw new Error('The second number must be less than the first');
   }
 
-  while (str1.length < str2.length) {
-    str1 = '0' + str1;
-  }
   while (str2.length < str1.length) {
     str2 = '0' + str2;
   }
