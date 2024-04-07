@@ -43,8 +43,6 @@ const coerceToType = (value, type) => {
   switch (true) {
     case type === "number":
       return convertToNumber(value);
-    case type === "boolean":
-      return invertBoolean(value);
     case type === "string":
       return stringifyValue(value);
     case type === "boolean":
