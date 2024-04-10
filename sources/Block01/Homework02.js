@@ -10,7 +10,13 @@ const addValues = (value1, value2) => {
   if (!allowedTypes.includes(type2)) {
     throw new Error(`Type ${type2} is not allowed`);
   }
-  return value1 + value2;
+  if ([type1, type2].every((type) => type === "string")) {
+    return value1 + value2;
+  }
+  if ([type1, type2].some((type) => type === "string")) {
+    throw new Error(`Can not add string with other types`);
+  }
+  return Number(value1) + Number(value2);
 };
 
 const stringifyValue = (value) => {
