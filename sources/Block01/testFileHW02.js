@@ -10,7 +10,8 @@ function testAddValues() {
   try {
     console.log(addValues(5, 3)); // Should print 8
     console.log(addValues("Hello", " World")); // Should print 'Hello World'
-    console.log(addValues(true, 1)); // Should print 2
+    console.log(addValues(true, false)); // Should print true
+    console.log(addValues(false, false)); // Should print false
     console.log(addValues(10, " apples")); // Should print '10 apples'
     // Adding objects is not supported, should throw an error
     console.log(addValues({}, {}));

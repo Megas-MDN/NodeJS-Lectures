@@ -16,6 +16,12 @@ const addValues = (value1, value2) => {
   if ([type1, type2].some((type) => type === "string")) {
     throw new Error(`Can not add string with other types`);
   }
+  if ([type1, type2].every((type) => type === "boolean")) {
+    return value1 || value2;
+  }
+  if ([type1, type2].some((type) => type === "boolean")) {
+    throw new Error(`Can not add boolean with other types`);
+  }
   return Number(value1) + Number(value2);
 };
 
