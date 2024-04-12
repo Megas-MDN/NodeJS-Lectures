@@ -1,5 +1,3 @@
-const log = (i, label = "<-- item") => console.log(i, label);
-
 const addValues = (value1, value2) => {
   const allowedTypes = ["boolean", "number", "string"];
   const type1 = typeof value1;
