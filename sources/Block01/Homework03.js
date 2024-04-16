@@ -24,11 +24,7 @@ const getFullName = (person) => {
 
 //----------------------
 const wordsToArray = (words) => words.toLowerCase().split(" ");
-const numberOfWords = (arrWords, word) =>
-  arrWords.filter((w) => w === word).length;
-
-const uniqueElements = (arrayWords) =>
-  arrayWords.filter((w) => numberOfWords(arrayWords, w) === 1);
+const uniqueElements = (arrayWords) => [...new Set(arrayWords)];
 const sortedUniqueWords = (uniqueWords) => [...uniqueWords].sort();
 
 const filterUniqueWords = (words) => {
@@ -84,12 +80,12 @@ const repeatFunction = (func, number) => {
 
 //----------------------
 
-const calculateFactorial = (number) => {
-  if (typeof number !== "number") {
-    throw new Error("Invalid number argument");
+const calculateFactorial = (number, accumulator = 1) => {
+  if (number === 0) {
+    return accumulator;
+  } else {
+    return calculateFactorial(number - 1, number * accumulator);
   }
-  if (number === 0 || number === 1) return 1;
-  return number * calculateFactorial(number - 1);
 };
 
 //----------------------
@@ -134,14 +130,14 @@ const fibonacciGenerator = () => {
 
 //---------------------- Testing
 
-const arrayOriginal = "x t q a t b q f f";
+const arrayOriginal = "x t q a t b q f f x x";
 // Task 1
 log(calculateDiscountedPrice(products, 10)); // [{ id: 1, name: 'Product 1', price: 9 }, { id: 2, name: 'Product 2', price: 13.5 },  { id: 3, name: 'Product 3', price: 18.9 },  { id: 4, name: 'Product 4', price: 27.9 },  { id: 5, name: 'Product 5', price: 39.6 }, { id: 6, name: 'Product 6', price: 8.91 }]
 log(calculateTotalPrice(products, 10)); // 130.9
 
 // Task 2
 log(getFullName({ firstName: "John", lastName: "Doe" })); // John Doe
-log(filterUniqueWords(arrayOriginal)); // [ 'a', 'b', 'x' ]
+log(filterUniqueWords(arrayOriginal)); // [ 'a', 'b', 'f', 'q', 't', 'x' ] <-- item
 log(getAverageGrade(students)); // [  { id: '1', name: 'John', grades: [ 10, 9, 5 ], avgGrade: 8 },  { id: '2', name: 'Jane', grades: [ 5, 10, 0 ], avgGrade: 5 },  { id: '3', name: 'Bob', grades: [ 7, 7, 6.5 ], avgGrade: 6.83 },  { id: '4', name: 'Alice', grades: [ 5.5, 10, 7 ], avgGrade: 7.5 },  { id: '5', name: 'Mark', grades: [ 8, 8.5, 9.8 ], avgGrade: 8.77 }]
 
 // Task 3
