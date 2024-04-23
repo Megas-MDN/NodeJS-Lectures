@@ -66,15 +66,14 @@ const getArrayIntersection = (arr1, arr2) => {
       ? [arr1.length, arr1, arr2]
       : [arr2.length, arr2, arr1];
   for (let i = 0; i < size; i++) {
-    if (smallArray.includes(bigArray[i])) {
-      result.push(bigArray[i]);
+    if (bigArray.includes(smallArray[i])) {
+      result.push(smallArray[i]);
     }
   }
   return result;
 };
 
 const getArrayUnion = (arr1, arr2) => {
-  console.log(Array.isArray(arr1), Array.isArray(arr2));
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
     return errorInvalidArguments();
   }
@@ -87,6 +86,7 @@ const measureArrayPerformance = (func, arr) => {
   const end = performance.now();
   return end - start;
 };
+
 // -------- Testing
 
 const obj = [
@@ -108,8 +108,8 @@ console.log(chunkArray(arr01, size));
 const arr02 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log(customShuffle(arr02));
 
-const arrSm = [1, 2, 3, 6];
-const arrLg = [1, 2, "x", 4, 6];
+const arrSm = [1, 2, 9];
+const arrLg = [1, 5, "x", 4, 2, 1];
 console.log(getArrayIntersection(arrSm, arrLg));
 console.log(getArrayUnion(arrSm, arrLg));
 
