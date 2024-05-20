@@ -4,6 +4,7 @@ class Queue {
   #items = {};
   constructor() {}
 
+  // Insertion
   enqueue(...elements) {
     elements.forEach((element) => {
       this.#items[this.#count] = element;
@@ -11,6 +12,7 @@ class Queue {
     });
   }
 
+  // Deletion
   dequeue() {
     if (this.isEmpty()) return undefined;
     const element = this.#items[this.#first];
@@ -19,10 +21,12 @@ class Queue {
     return element;
   }
 
+  // Peek the first element
   peek() {
     return this.#items[this.#first];
   }
 
+  // Size of the queue
   size() {
     return this.#count - this.#first;
   }
@@ -31,12 +35,14 @@ class Queue {
     return this.size() === 0;
   }
 
+  // Clear the queue
   clear() {
     this.#count = 0;
     this.#first = 0;
     this.#items = {};
   }
 
+  // Convert the queue to string
   toString(separator = "") {
     return Object.values(this.#items).join(separator);
   }

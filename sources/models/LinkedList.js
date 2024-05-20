@@ -24,6 +24,7 @@ class LinkedList {
     return { prev, curr };
   }
 
+  // Insertion at any index
   insertAt(element, index) {
     if (index < 0 || index > this.#count) return null;
     const node = new this.#Nod(element);
@@ -38,14 +39,17 @@ class LinkedList {
     return node;
   }
 
+  // Insertion at the end
   insert(element) {
     return this.insertAt(element, this.#count);
   }
 
+  // Insertion at the end
   push(element) {
     return this.insertAt(element, this.#count);
   }
 
+  // Deletion at any index
   removeAt(index) {
     if (index < 0 || index >= this.#count) return null;
     const { prev, curr } = this.#getIndexAt(index);
@@ -57,10 +61,13 @@ class LinkedList {
     this.#count--;
     return curr;
   }
+
+  // Deletion at the end
   pop() {
     return this.removeAt(this.#count - 1);
   }
 
+  // Find an element
   indexOf(element) {
     let curr = this.#head;
     let prev = null;
@@ -72,22 +79,29 @@ class LinkedList {
     return -1;
   }
 
+  // Remove an element
   remove(element) {
     const index = this.indexOf(element);
     return this.removeAt(index);
   }
 
+  // Check if the list is empty
   isEmpty() {
     return this.#count === 0;
   }
+
+  // Size of the list
   size() {
     return this.#count;
   }
+
+  // Get the head element
   getHead() {
     if (this.isEmpty()) return null;
     return this.#head?.element;
   }
 
+  // Get the node
   getNode(element) {
     const index = this.indexOf(element);
     if (index < 0) return null;
@@ -95,10 +109,18 @@ class LinkedList {
     return node;
   }
 
+  // Get the head node ref
   get head() {
     return this.#head;
   }
 
+  // Clear the list
+  clear() {
+    this.#head = null;
+    this.#count = 0;
+  }
+
+  // Stringify the list
   toString(separator = "") {
     if (this.isEmpty()) return "";
     let str = "";

@@ -3,6 +3,7 @@ class Graph {
     this.matrix = {};
   }
 
+  // add vertex
   addingVertex(vertex) {
     if (!(vertex in this.matrix)) {
       this.matrix[vertex] = [];
@@ -11,6 +12,7 @@ class Graph {
     return;
   }
 
+  // add edge
   addingEdge(vtx1, vtx2) {
     if (vtx1 && vtx2 && vtx1 in this.matrix && vtx2 in this.matrix) {
       this.matrix[vtx1].push(vtx2);
@@ -20,6 +22,7 @@ class Graph {
     return;
   }
 
+  // remove edge
   removeEdge(vtx1, vtx2) {
     if (
       vtx1 &&
@@ -34,6 +37,7 @@ class Graph {
     return;
   }
 
+  // remove vertex
   removeVertex(vtx) {
     if (vtx in this.matrix) {
       this.matrix[vtx].forEach((v) => {
@@ -44,6 +48,7 @@ class Graph {
     return;
   }
 
+  // dfs
   dfs(vertex) {
     const visited = new Set();
     if (!(vertex in this.matrix)) {
@@ -63,6 +68,7 @@ class Graph {
     return Array.from(visited);
   }
 
+  // bfs
   bfs(vertex) {
     const visited = new Set();
     if (!(vertex in this.matrix)) {

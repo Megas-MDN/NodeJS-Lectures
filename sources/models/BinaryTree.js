@@ -8,6 +8,8 @@ class BinaryTree {
     this.#compareFn = compareFn;
     this.#root = null;
   }
+
+  // Insertion in root of Binary Search Tree
   insert(key) {
     if (this.#root === null) {
       this.#root = new Node(key);
@@ -15,6 +17,8 @@ class BinaryTree {
     }
     this.insertNode(this.#root, key);
   }
+
+  //  Instertion in Binary Search Tree
   insertNode(node, key) {
     if (this.#compareFn(key, node.key) < 0) {
       if (node.left === null) {
@@ -32,6 +36,7 @@ class BinaryTree {
     }
   }
 
+  //  Private searching in Binary Search Tree
   #searchNode(node, key) {
     if (node === null) return false;
     if (this.#compareFn(key, node.key) === 0) return true;
@@ -41,10 +46,12 @@ class BinaryTree {
       return this.#searchNode(node.right, key);
   }
 
+  // Searching in Binary Search Tree
   search(key) {
     return this.#searchNode(this.#root, key);
   }
 
+  //  Private removal in Binary Search Tree
   #removeNode(node, key) {
     if (node === null) return null;
     if (this.#compareFn(key, node.key) < 0) {
@@ -73,28 +80,36 @@ class BinaryTree {
     return node;
   }
 
+  // Removal in Binary Search Tree
   remove(key) {
     this.#root = this.#removeNode(this.#root, key);
   }
 
+  // Traversals in Binary Search Tree
   #inOrderTraversalNode(node, callback) {
     if (!node) return;
     this.#inOrderTraversalNode(node.left, callback);
     callback(node.key);
     this.#inOrderTraversalNode(node.right, callback);
   }
+
+  // Inorder Traversal in Binary Search Tree
   inOrderTraversal(callback) {
     this.#inOrderTraversalNode(this.#root, callback);
   }
+
+  // Preorder Traversal in Binary Search Tree
   preOrderTraversal(callback) {
     this.#preOrderTraversalNode(this.#root, callback);
   }
+
   #preOrderTraversalNode(node, callback) {
     if (!node) return;
     callback(node.key);
     this.#preOrderTraversalNode(node.left, callback);
     this.#preOrderTraversalNode(node.right, callback);
   }
+  // Postorder Traversal in Binary Search Tree
   preOrderTraversal(callback) {
     this.#preOrderTraversalNode(this.#root, callback);
   }
@@ -105,6 +120,8 @@ class BinaryTree {
     this.#postOrderTraversalNode(node.right, callback);
     callback(node.key);
   }
+
+  // Postorder Traversal in Binary Search Tree
   postOrderTraversal(callback) {
     this.#postOrderTraversalNode(this.#root, callback);
   }
@@ -114,6 +131,8 @@ class BinaryTree {
     if (node.left === null) return node.key;
     return this.#minNode(node.left);
   }
+
+  // Minimum Node in Binary Search Tree
   min() {
     return this.#minNode(this.#root);
   }
@@ -123,9 +142,13 @@ class BinaryTree {
     if (node.right === null) return node.key;
     return this.#maxNode(node.right);
   }
+
+  // Maximum Node in Binary Search Tree
   max() {
     return this.#maxNode(this.#root);
   }
+
+  // Traversals in Binary Search Tree
   toString({ order = 0, separator = " " } = {}) {
     let result = "";
     switch (order) {
