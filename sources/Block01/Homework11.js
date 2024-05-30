@@ -41,7 +41,7 @@ function myJSONParse(jsonStr) {
 const parseArray = (items = []) =>
   items.map((item) => parseItems(item.match(defineTypeRgx).groups));
 
-// Parce each item in object to correct types
+// Parse each item in object to correct types
 const parseItems = (values) => {
   const types = ["string", "object", "array", "number", "boolean", "null"];
   const [value, currentData] = Object.entries(values).find(([key, data]) => {
