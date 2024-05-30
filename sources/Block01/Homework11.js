@@ -32,17 +32,17 @@ function myJSONParse(jsonStr) {
     let { key, ...groups } = flagStep.groups;
 
     const keyWithoutQuotes = key.replace(quoteRgx, ""); // replace quotes
-    result[keyWithoutQuotes] = stringfyItems(groups);
+    result[keyWithoutQuotes] = parseItems(groups);
   }
   return result;
 }
 
-// Turn each item in Array to strings
-const stringfyArray = (items = []) =>
-  items.map((item) => stringfyItems(item.match(defineTypeRgx).groups));
+// Parse each item in array string to correct types
+const parseArray = (items = []) =>
+  items.map((item) => parseItems(item.match(defineTypeRgx).groups));
 
-// Turn each item in Json object to strings
-const stringfyItems = (values) => {
+// Parce each item in object to correct types
+const parseItems = (values) => {
   const types = ["string", "object", "array", "number", "boolean", "null"];
   const [value, currentData] = Object.entries(values).find(([key, data]) => {
     return data !== undefined;
@@ -51,40 +51,30 @@ const stringfyItems = (values) => {
   if (!types.includes(value)) {
     throw new Error(`Error to stringfy this ${currentData}`);
   }
-  let result;
 
   // switch case true for different types
   switch (true) {
     case value === "object":
-      result = myJSONParse(currentData);
-      break;
+      return myJSONParse(currentData);
 
     case value === "array":
-      result = stringfyArray(currentData.replace(/^\[|\]$/, "").split(","));
-      break;
+      return parseArray(currentData.replace(/^\[|\]$/, "").split(","));
 
     case value === "number":
-      result = Number(currentData);
-      break;
+      return Number(currentData);
 
     case value === "string":
-      result = currentData.replace(quoteRgx, "");
-      break;
+      return currentData.replace(quoteRgx, "");
 
     case value === "boolean":
-      result = currentData === "true";
-      break;
+      return currentData === "true";
 
     case value === "null":
-      result = null;
-      break;
+      return null;
 
     default:
-      result = undefined;
-      break;
+      return undefined;
   }
-
-  return result;
 };
 
 const jsonString =
