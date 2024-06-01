@@ -37,7 +37,7 @@ function testInvertBoolean() {
   try {
     console.log(invertBoolean(true)); // Should print false
     console.log(invertBoolean(false)); // Should print true
-    // Trying to invert a number, should throw an error
+    // Trying to invert a number, should throw an error.
     console.log(invertBoolean(0));
   } catch (error) {
     console.error("Error:", error.message);
